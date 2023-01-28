@@ -1,2 +1,4 @@
 # DeFund
-This is a decentralized web3 based crowd funding platform, operating on the Ethereum Protocol.
+- This is a decentralized web3 based crowdfunding platform
+- Runs on the Ethereum Network.
+- Uses web3 framwork: thirdweb
