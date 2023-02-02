@@ -1,3 +1,7 @@
+## Contract Dashboard
+
+https://thirdweb.com/goerli/0x120EA1395144737693710c9Ed8eF390ba5C64b19/ 
+
 ## Getting Started
 
 Create a project using this example:
