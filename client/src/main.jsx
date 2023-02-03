@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 import App from './App';
+import './index.css'
 
 root.render(
     <ThirdwebProvider desiredChainId={ChainId.Goerli}>
