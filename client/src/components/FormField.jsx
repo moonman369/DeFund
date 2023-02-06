@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormField = ({
   labelName,
-  placeHolder,
+  placeholder,
   inputType,
   isTextArea,
   value,
@@ -21,7 +21,7 @@ const FormField = ({
           value={value}
           onChange={handleChange}
           rows={10}
-          placeholder={placeHolder}
+          placeholder={placeholder}
           className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]"
         />
       ) : (
@@ -31,7 +31,7 @@ const FormField = ({
           onChange={handleChange}
           type={inputType}
           step="0.1"
-          placeholder={placeHolder}
+          placeholder={placeholder}
           className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]"
         />
       )}

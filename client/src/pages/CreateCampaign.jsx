@@ -47,11 +47,36 @@ const CreateCampaign = () => {
             value={form.title}
             handleChange={() => {}}
           />
+        </div>
+
+        <FormField
+          labelName="Story *"
+          placeholder="Write your story..."
+          isTextArea
+          value={form.description}
+          handleChange={() => {}}
+        />
+
+        <div className="w-full flex justify-start items-center p-4 bg-[#8c6dfd] h-[120px] rounded-[10px]">
+          <img src={money} alt="money" className="w-[40px] h-[40px]" />
+          <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">
+            You will get 100% of the raised amount
+          </h4>
+        </div>
+
+        <div className="flex flex-wrap gap-[40px]">
           <FormField
-            labelName="Your Name *"
-            placeholder="John Doe"
-            inputType="text"
-            value={form.name}
+            labelName="Goal *"
+            placeholder="0.5 ETH"
+            inputType="number"
+            value={form.target}
+            handleChange={() => {}}
+          />
+          <FormField
+            labelName="End Date *"
+            placeholder="End date"
+            inputType="date"
+            value={form.deadline}
             handleChange={() => {}}
           />
         </div>
