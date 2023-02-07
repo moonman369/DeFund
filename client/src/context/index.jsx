@@ -6,6 +6,7 @@ import {
   useContractWrite,
 } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
+import { parse } from '@ethersproject/transactions';
 
 const StateContext = createContext();
 
@@ -56,6 +57,8 @@ export const StateContextProvider = ({ children }) => {
     }));
 
     console.log(parsedCampaigns);
+
+    return parsedCampaigns;
   };
 
   return (
