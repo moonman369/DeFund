@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { DisplayCampaigns } from '../components';
 import { useStateContext } from '../context';
 
 const Home = () => {
@@ -18,7 +19,15 @@ const Home = () => {
     if (contract) fetchCampaigns();
   }, [address, contract]);
 
-  return <div>Home</div>;
+  return (
+    <div>
+      <DisplayCampaigns
+        title="All campaigns"
+        isLoading={isLoading}
+        campaigns={campaigns}
+      />
+    </div>
+  );
 };
 
 export default Home;
