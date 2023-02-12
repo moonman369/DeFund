@@ -4,6 +4,7 @@ import CustomButton from './CustomButton';
 import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks } from '../constants';
 import { useStateContext } from '../context';
+import { ConnectWallet } from '@thirdweb-dev/react';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -32,15 +33,32 @@ const Navbar = () => {
       </div>
 
       <div className="sm:flex hidden flex-row justify-end gap-4">
-        <CustomButton
-          btnType="button"
-          title={address ? 'Create a campaign' : 'Connect'}
-          styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
-          handleClick={() => {
-            if (address) navigate('create-campaign');
-            else connect();
-          }}
-        />
+        {address ? (
+          <div className="flex">
+            <CustomButton
+              btnType="button"
+              title={'Create a campaign'}
+              styles={address ? 'bg-[#1dc071] mr-3' : 'bg-[#8c6dfd]'}
+              handleClick={() => {
+                if (address) navigate('create-campaign');
+                else connect();
+              }}
+            />
+            <ConnectWallet className="font-epilogue font-semibold test-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]" />
+          </div>
+        ) : (
+          <div>
+            <CustomButton
+              btnType="button"
+              title={'Connect'}
+              styles={'bg-[#8c6dfd]'}
+              handleClick={() => {
+                if (address) navigate('create-campaign');
+                else connect();
+              }}
+            />
+          </div>
+        )}
 
         <Link to="/profile">
           <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
