@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { thirdweb } from '../assets';
-import { CustomButton, CountBox } from '../components';
+import { CustomButton, CountBox, Loader } from '../components';
 import { useStateContext } from '../context';
 import { calculateBarPercentage, daysLeft } from '../utils';
 
@@ -35,7 +35,7 @@ const CampaignDetails = () => {
   };
   return (
     <div>
-      {isLoading && 'Loading...'}
+      {isLoading && <Loader />}
 
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
