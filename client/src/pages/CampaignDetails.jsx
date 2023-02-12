@@ -8,8 +8,14 @@ import { calculateBarPercentage, daysLeft } from '../utils';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const { donate, getDonations, getUserCampaignCount, contract, address } =
-    useStateContext();
+  const {
+    connect,
+    donate,
+    getDonations,
+    getUserCampaignCount,
+    contract,
+    address,
+  } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
@@ -37,9 +43,15 @@ const CampaignDetails = () => {
 
   const handleDonate = async () => {
     // console.log(await getDonations(4));
+    if (!address) {
+      connect();
+    }
+    // console.log(state);
     setIsLoading(true);
-    console.log(state);
-    await donate(state.id, amount);
+    await donate(state.id, amount).catch((e) => {
+      setIsLoading(false);
+      return;
+    });
     await fetchDonators();
     setIsLoading(false);
   };
