@@ -8,7 +8,7 @@ import { calculateBarPercentage, daysLeft } from '../utils';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const { getDonations, contract, address } = useStateContext();
+  const { donate, getDonations, contract, address } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
@@ -16,7 +16,23 @@ const CampaignDetails = () => {
 
   const remainingDays = daysLeft(state.deadline);
 
-  const handleDonate = async () => {};
+  const fetchDonators = async () => {
+    const data = await getDonations(state.id);
+    setDonators(data);
+  };
+
+  useEffect(() => {
+    if (contract) fetchDonators();
+  }, [contract, address]);
+
+  const handleDonate = async () => {
+    // console.log(await getDonations(4));
+    setIsLoading(true);
+    console.log(state);
+    await donate(state.id, amount);
+    await fetchDonators();
+    setIsLoading(false);
+  };
   return (
     <div>
       {isLoading && 'Loading...'}
@@ -98,7 +114,19 @@ const CampaignDetails = () => {
 
             <div className="mt-[20px] flex flex-col gap-4">
               {donators.length > 0 ? (
-                donators.map((donator, index) => <div>DONATOR</div>)
+                donators.map((item, index) => (
+                  <div
+                    key={`${item.donator}-${index}`}
+                    className="flex justify-between items-center gap-4"
+                  >
+                    <p className="font-epilogue fonr-normal text-[16px] text-[#b2b3bd]">
+                      {index + 1}. {item.donator}
+                    </p>
+                    <p className="font-epilogue fonr-normal text-[16px] text-[#808191]">
+                      {item.donation}
+                    </p>
+                  </div>
+                ))
               ) : (
                 <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
                   No Donators yet. Be the first one.
