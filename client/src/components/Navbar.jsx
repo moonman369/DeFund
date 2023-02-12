@@ -10,7 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const { connect, address } = useStateContext();
+  const { connect, address, disconnect } = useStateContext();
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -103,6 +103,10 @@ const Navbar = () => {
                 onClick={() => {
                   setIsActive(link.name);
                   setToggleDrawer(false);
+                  if (link.name === 'logout') {
+                    disconnect();
+                    return;
+                  }
                   navigate(link.link);
                 }}
               >
@@ -115,8 +119,8 @@ const Navbar = () => {
                 />
                 <p
                   className={`ml-[20px] font-epilogue font-semibold text-[14px] ${
-                    isActive === link.name ? 'text-[#1dc071]' : 'text-[#808191]'
-                  }`}
+                    isActive === link.name ? 'text-[#1dc071]' : 'text-[#9a9ba5]'
+                  } ${!link.disabled ? 'cursor-pointer' : 'text-[#696a6d]'}`}
                 >
                   {link.name}
                 </p>
