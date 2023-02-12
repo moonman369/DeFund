@@ -8,11 +8,13 @@ import { calculateBarPercentage, daysLeft } from '../utils';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const { donate, getDonations, contract, address } = useStateContext();
+  const { donate, getDonations, getUserCampaignCount, contract, address } =
+    useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
   const [donators, setDonators] = useState([]);
+  const [campaignCount, setCampaignCount] = useState(0);
 
   const remainingDays = daysLeft(state.deadline);
 
@@ -21,8 +23,16 @@ const CampaignDetails = () => {
     setDonators(data);
   };
 
+  const fetchCampaignCount = async () => {
+    const count = await getUserCampaignCount(state.owner);
+    setCampaignCount(count);
+  };
+
   useEffect(() => {
-    if (contract) fetchDonators();
+    if (contract) {
+      fetchDonators();
+      fetchCampaignCount();
+    }
   }, [contract, address]);
 
   const handleDonate = async () => {
@@ -54,6 +64,7 @@ const CampaignDetails = () => {
                   state.amountCollected
                 )} %`,
                 maxWidth: '100%',
+                color: 'white',
               }}
             ></div>
           </div>
@@ -89,7 +100,7 @@ const CampaignDetails = () => {
                   {state.owner}
                 </h4>
                 <p className="mt[4px] font-epilogue font-normal text-[12px] text-[#808191]">
-                  10 Campaigns
+                  {campaignCount} Campaigns
                 </p>
               </div>
             </div>
@@ -101,9 +112,15 @@ const CampaignDetails = () => {
             </h4>
 
             <div className="mt-[20px]">
-              <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
-                {state.description}
-              </p>
+              {state.description.includes(' ') ? (
+                <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
+                  {state.description}
+                </p>
+              ) : (
+                <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify truncate">
+                  {`${state.description.slice(0, 100)}...`}
+                </p>
+              )}
             </div>
           </div>
 
