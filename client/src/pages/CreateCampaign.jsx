@@ -25,16 +25,27 @@ const CreateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(form);
     checkIfImage(form.image, async (exists) => {
       if (exists) {
-        setIsLoading(true);
-        await createCampaign({
-          ...form,
-          target: ethers.utils.parseUnits(form.target, 18),
-        });
-        setIsLoading(false);
-        navigate('/');
+        // console.log(new Date(form.deadline).getTime(), Date.now());
+        if (new Date(form.deadline).getTime() < Date.now()) {
+          alert('Invalid deadline! Try entering a future date.');
+          setForm({ ...form, deadline: '' });
+        } else {
+          setIsLoading(true);
+          try {
+            await createCampaign({
+              ...form,
+              target: ethers.utils.parseUnits(form.target, 18),
+            });
+          } catch (error) {
+            navigate('');
+            return;
+          }
+          setIsLoading(false);
+          navigate('/');
+        }
       } else {
         alert('Provide valid image URL');
         setForm({ ...form, image: '' });
