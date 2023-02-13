@@ -40,6 +40,7 @@ export const StateContextProvider = ({ children }) => {
       console.log('Contract call success', data);
     } catch (error) {
       console.error(error);
+      return false;
     }
   };
 
