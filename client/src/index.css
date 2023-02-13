@@ -27,5 +27,5 @@ progress::-webkit-progress-bar {
   background: #3a3a43;
 }
 progress::-webkit-progress-value {
-  background: #1dc071;
+  background: linear-gradient(90deg, #1d64c0, 50%, #1dc071);
 }
