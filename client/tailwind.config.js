@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    screens: {
+      xs: { min: '250px', max: '400px' },
+      // ssm: '556px',
+      ...defaultTheme.screens,
+    },
     extend: {
       fontFamily: {
         epilogue: ['Epilogue', 'sans-serif'],
@@ -15,4 +18,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
