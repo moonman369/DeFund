@@ -72,7 +72,7 @@ const CampaignDetails = () => {
           <progress
             value={state.amountCollected}
             max={state.target}
-            className="relative w-full h-[6px] bg-[#3a3a43] mt-2"
+            className="relative w-full h-[6px] bg-[#3a3a43] mt-2 rounded-xl"
           ></progress>
           {/* <div className="relative w-full h-[5px] bg-[#3a3a43] mt-2">
             <div
