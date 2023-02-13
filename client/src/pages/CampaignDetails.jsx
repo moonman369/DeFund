@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { thirdweb } from '../assets';
 import { CustomButton, CountBox, Loader } from '../components';
@@ -8,6 +8,7 @@ import { calculateBarPercentage, daysLeft } from '../utils';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
+  const input = useRef();
   const {
     connect,
     donate,
@@ -43,6 +44,7 @@ const CampaignDetails = () => {
 
   const handleDonate = async () => {
     // console.log(await getDonations(4));
+    // console.log(input);
     if (!address) {
       connect();
     }
@@ -53,6 +55,7 @@ const CampaignDetails = () => {
       return;
     });
     await fetchDonators();
+    input.current.value = '';
     setIsLoading(false);
   };
   return (
@@ -184,6 +187,7 @@ const CampaignDetails = () => {
             </p>
             <div className="mt-[30px] ">
               <input
+                ref={input}
                 type="number"
                 placeholder="0.01 ETH"
                 step="0.01"
