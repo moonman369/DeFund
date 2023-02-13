@@ -89,7 +89,7 @@ const Navbar = () => {
         />
 
         <div
-          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${
+          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 rounded-[10px] ${
             !toggleDrawer ? '-translate-y-[100vh]' : 'translate-y-0'
           } transition-all duration-700`}
         >
@@ -128,19 +128,22 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="flex mx-4">
+          <div className="flex justify-center mx-4">
             {address ? (
-              <div className="flex">
+              <div className="flex flex-col">
+                <ConnectWallet
+                  className="font-epilogue font-semibold test-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]"
+                  my-3
+                />
                 <CustomButton
                   btnType="button"
                   title={'Create a campaign'}
-                  styles={address ? 'bg-[#1dc071] mr-3' : 'bg-[#8c6dfd]'}
+                  styles={address ? 'bg-[#1dc071] my-3' : 'bg-[#8c6dfd]'}
                   handleClick={() => {
                     if (address) navigate('create-campaign');
                     else connect();
                   }}
                 />
-                <ConnectWallet className="font-epilogue font-semibold test-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]" />
               </div>
             ) : (
               <div>
