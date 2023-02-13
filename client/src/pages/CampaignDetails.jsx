@@ -149,7 +149,15 @@ const CampaignDetails = () => {
                     className="flex justify-between items-center gap-4"
                   >
                     <p className="font-epilogue fonr-normal text-[16px] text-[#b2b3bd]">
-                      {index + 1}. {item.donator}
+                      {index + 1}.{' '}
+                      <a
+                        href={`https://goerli.etherscan.io/address/${item.donator}`}
+                        target="_blank"
+                        className="text-[#6ef3cb]"
+                      >
+                        {item.donator.slice(0, 8)}......
+                        {item.donator.slice(-6, item.donator.length)}
+                      </a>
                     </p>
                     <p className="font-epilogue fonr-normal text-[16px] text-[#808191]">
                       {item.donation}
@@ -165,7 +173,7 @@ const CampaignDetails = () => {
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 mt-[20px]">
           <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
             Fund
           </h4>
