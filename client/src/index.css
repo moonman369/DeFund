@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +12,20 @@
   );
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(0.8);
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 10rem;
+}
+progress::-webkit-progress-value {
+  border-radius: 10rem;
+}
+progress::-webkit-progress-bar {
+  background: #3a3a43;
+}
+progress::-webkit-progress-value {
+  background: #1dc071;
 }
