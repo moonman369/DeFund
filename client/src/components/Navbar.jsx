@@ -23,7 +23,7 @@ const Navbar = () => {
           id=""
         />
 
-        <div className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer">
+        <div className="w-[72px] h-full rounded-[20px] bg-gradient-to-r from-[#1d64c0] to-[#1dc071] flex justify-center items-center cursor-pointer">
           <img
             src={search}
             alt="search"
@@ -38,10 +38,9 @@ const Navbar = () => {
             <CustomButton
               btnType="button"
               title={'Create a campaign'}
-              styles={address ? 'bg-[#1dc071] mr-3' : 'bg-[#8c6dfd]'}
+              styles={'bg-gradient-to-r from-[#1d64c0] to-[#1dc071] mr-3'}
               handleClick={() => {
-                if (address) navigate('create-campaign');
-                else connect();
+                navigate('create-campaign');
               }}
             />
             <ConnectWallet className="font-epilogue font-semibold test-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]" />
@@ -51,10 +50,9 @@ const Navbar = () => {
             <CustomButton
               btnType="button"
               title={'Connect'}
-              styles={'bg-[#8c6dfd]'}
+              styles={'bg-gradient-to-r from-[#8c6dfd] to-[#d47c34]'}
               handleClick={() => {
-                if (address) navigate('create-campaign');
-                else connect();
+                connect();
               }}
             />
           </div>
@@ -140,10 +138,9 @@ const Navbar = () => {
                 <CustomButton
                   btnType="button"
                   title={'Create a campaign'}
-                  styles={address ? 'bg-[#1dc071] my-3' : 'bg-[#8c6dfd]'}
+                  styles={'bg-gradient-to-r from-[#1d64c0] to-[#1dc071] my-3'}
                   handleClick={() => {
-                    if (address) navigate('create-campaign');
-                    else connect();
+                    navigate('create-campaign');
                   }}
                 />
               </div>
@@ -152,10 +149,9 @@ const Navbar = () => {
                 <CustomButton
                   btnType="button"
                   title={'Connect'}
-                  styles={'bg-[#8c6dfd]'}
+                  styles={'bg-gradient-to-r from-[#8c6dfd] to-[#d47c34]'}
                   handleClick={() => {
-                    if (address) navigate('create-campaign');
-                    else connect();
+                    connect();
                   }}
                 />
               </div>

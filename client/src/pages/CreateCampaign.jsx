@@ -47,7 +47,7 @@ const CreateCampaign = () => {
       setForm({ ...form, image: '' });
     }
 
-    console.log(form);
+    // console.log(form);
   };
 
   return (
@@ -125,7 +125,7 @@ const CreateCampaign = () => {
           <CustomButton
             btnType="submit"
             title="Submit new campaign"
-            styles="bg-[#1dc071]"
+            styles="bg-gradient-to-r from-[#1d64c0] to-[#1dc071]"
           />
         </div>
       </form>
