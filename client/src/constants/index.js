@@ -38,7 +38,14 @@ export const navlinks = [
   {
     name: 'logout',
     imgUrl: logout,
-    link: '/',
+    // link: '/',
     // disabled: true,
   },
 ];
+
+let map = new Map();
+for (let navlink of navlinks) {
+  if (!navlink.disabled) map.set(navlink.link, navlink.name);
+}
+
+export const linkMap = map;

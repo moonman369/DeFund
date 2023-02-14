@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import CustomButton from './CustomButton';
 import { logo, menu, search, thirdweb } from '../assets';
-import { navlinks } from '../constants';
+import { navlinks, linkMap } from '../constants';
 import { useStateContext } from '../context';
 import { ConnectWallet } from '@thirdweb-dev/react';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { connect, address, disconnect } = useStateContext();
+
+  useEffect(() => {
+    console.log(pathname);
+    const active = linkMap.get(pathname);
+    if (active) setIsActive(active);
+  }, [pathname]);
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -71,7 +78,12 @@ const Navbar = () => {
 
       {/* Small screen navigation */}
       <div className="sm:hidden flex justify-between items-center relative">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() => {
+            setToggleDrawer(false);
+          }}
+        >
           <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
             <img
               src={logo}
@@ -101,10 +113,14 @@ const Navbar = () => {
                   isActive === link.name && 'bg-[#3a3a43]'
                 }`}
                 onClick={() => {
-                  setIsActive(link.name);
-                  setToggleDrawer(false);
+                  if (!link.disabled) {
+                    setIsActive(link.name);
+                    setToggleDrawer(false);
+                  }
                   if (link.name === 'logout') {
                     disconnect();
+                    navigate('/');
+                    setIsActive('dashboard');
                     return;
                   }
                   navigate(link.link);
@@ -115,12 +131,12 @@ const Navbar = () => {
                   alt={link.name}
                   className={`w-[24px] h-[24px] object-contain ${
                     isActive === link.name ? 'grayscale-0' : 'grayscale'
-                  }`}
+                  } ${link.disabled && 'fill-current text-[#58585a]'}`}
                 />
                 <p
                   className={`ml-[20px] font-epilogue font-semibold text-[14px] ${
                     isActive === link.name ? 'text-[#1dc071]' : 'text-[#9a9ba5]'
-                  } ${!link.disabled ? 'cursor-pointer' : 'text-[#696a6d]'}`}
+                  } ${!link.disabled ? 'cursor-pointer' : 'text-[#58585a]'}`}
                 >
                   {link.name}
                 </p>
@@ -140,6 +156,7 @@ const Navbar = () => {
                   title={'Create a campaign'}
                   styles={'bg-gradient-to-r from-[#1d64c0] to-[#1dc071] my-3'}
                   handleClick={() => {
+                    setToggleDrawer(false);
                     navigate('create-campaign');
                   }}
                 />
