@@ -64,6 +64,23 @@ export const StateContextProvider = ({ children }) => {
     return parsedCampaigns.reverse();
   };
 
+  const getCampaignById = async (id) => {
+    const parsedId = Number(id);
+    if (!parsedId) return false;
+    const campaign = await contract.call('getCampaignById', parsedId);
+    return {
+      owner: campaign.owner,
+      title: campaign.title,
+      description: campaign.description,
+      target: ethers.utils.formatEther(campaign.target.toString()),
+      deadline: campaign.deadline.toNumber(),
+      amountCollected: ethers.utils.formatEther(
+        campaign.amountCollected.toString()
+      ),
+      image: campaign.imageUri,
+    };
+  };
+
   const getUserCampaigns = async () => {
     const allCampaigns = await getCampaigns();
 
@@ -120,6 +137,7 @@ export const StateContextProvider = ({ children }) => {
         createCampaign: publishCampaign,
         donate,
         getDonations,
+        getCampaignById,
         getCampaignCount,
       }}
     >

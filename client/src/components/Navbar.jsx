@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import CustomButton from './CustomButton';
 import { logo, menu, search, thirdweb } from '../assets';
@@ -8,13 +8,15 @@ import { ConnectWallet } from '@thirdweb-dev/react';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const searchRef = useRef();
   const { pathname } = useLocation();
   const [isActive, setIsActive] = useState('dashboard');
+  const [id, setId] = useState('');
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { connect, address, disconnect } = useStateContext();
 
   useEffect(() => {
-    console.log(pathname);
+    // console.log(pathname);
     const active = linkMap.get(pathname);
     if (active) setIsActive(active);
   }, [pathname]);
@@ -23,17 +25,22 @@ const Navbar = () => {
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
       <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
         <input
+          ref={searchRef}
           type="text"
           placeholder="Search for campaigns"
           className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] text-white bg-transparent outline-none"
-          name=""
-          id=""
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
         />
 
         <div className="w-[72px] h-full rounded-[20px] bg-gradient-to-r from-[#1d64c0] to-[#1dc071] flex justify-center items-center cursor-pointer">
           <button
             onClick={() => {
-              navigate('/search-results');
+              searchRef.current.value = '';
+              navigate(`/search-results/${id}`, {
+                state: { queryId: id },
+              });
             }}
           >
             <img
