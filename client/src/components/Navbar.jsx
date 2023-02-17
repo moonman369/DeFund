@@ -31,11 +31,17 @@ const Navbar = () => {
         />
 
         <div className="w-[72px] h-full rounded-[20px] bg-gradient-to-r from-[#1d64c0] to-[#1dc071] flex justify-center items-center cursor-pointer">
-          <img
-            src={search}
-            alt="search"
-            className="w-[15px] h-[15px] object-contain"
-          />
+          <button
+            onClick={() => {
+              navigate('/search-results');
+            }}
+          >
+            <img
+              src={search}
+              alt="search"
+              className="w-[15px] h-[15px] object-contain"
+            />
+          </button>
         </div>
       </div>
 

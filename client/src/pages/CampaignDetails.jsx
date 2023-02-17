@@ -14,6 +14,7 @@ const CampaignDetails = () => {
     donate,
     getDonations,
     getUserCampaignCount,
+    getCampaignCount,
     contract,
     address,
   } = useStateContext();
@@ -33,6 +34,13 @@ const CampaignDetails = () => {
   const fetchCampaignCount = async () => {
     const count = await getUserCampaignCount(state.owner);
     setCampaignCount(count);
+  };
+
+  const isIdValid = async () => {
+    const isIdValid =
+      state.id >= 0 || state.id < (await getCampaignCount()).toNumber();
+    isLoading(false);
+    return isIdValid;
   };
 
   useEffect(() => {

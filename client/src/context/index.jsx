@@ -73,6 +73,11 @@ export const StateContextProvider = ({ children }) => {
     return filteredCampaigns;
   };
 
+  const getCampaignCount = async () => {
+    const count = await contract.call('campaignCount');
+    return count;
+  };
+
   const getUserCampaignCount = async (owner) => {
     const allCampaigns = await getCampaigns();
 
@@ -115,6 +120,7 @@ export const StateContextProvider = ({ children }) => {
         createCampaign: publishCampaign,
         donate,
         getDonations,
+        getCampaignCount,
       }}
     >
       {children}
