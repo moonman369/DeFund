@@ -68,6 +68,8 @@ export const StateContextProvider = ({ children }) => {
     const parsedId = Number(id);
     if (!parsedId) return false;
     const campaign = await contract.call('getCampaignById', parsedId);
+    if (campaign.owner === '0x0000000000000000000000000000000000000000')
+      return false;
     return {
       owner: campaign.owner,
       title: campaign.title,
@@ -78,6 +80,7 @@ export const StateContextProvider = ({ children }) => {
         campaign.amountCollected.toString()
       ),
       image: campaign.imageUri,
+      id: id,
     };
   };
 

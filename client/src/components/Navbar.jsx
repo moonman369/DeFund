@@ -27,29 +27,29 @@ const Navbar = () => {
         <input
           ref={searchRef}
           type="text"
-          placeholder="Search for campaigns"
+          placeholder="Search for campaigns by id"
           className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] text-white bg-transparent outline-none"
           onChange={(e) => {
             setId(e.target.value);
           }}
         />
 
-        <div className="w-[72px] h-full rounded-[20px] bg-gradient-to-r from-[#1d64c0] to-[#1dc071] flex justify-center items-center cursor-pointer">
-          <button
-            onClick={() => {
-              searchRef.current.value = '';
-              navigate(`/search-results/${id}`, {
-                state: { queryId: id },
-              });
-            }}
-          >
+        <button
+          onClick={() => {
+            searchRef.current.value = '';
+            navigate(`/search-results/${id}`, {
+              state: { queryId: id },
+            });
+          }}
+        >
+          <div className="w-[72px] h-full rounded-[20px] bg-gradient-to-r from-[#1d64c0] to-[#1dc071] flex justify-center items-center cursor-pointer">
             <img
               src={search}
               alt="search"
               className="w-[15px] h-[15px] object-contain"
             />
-          </button>
-        </div>
+          </div>
+        </button>
       </div>
 
       <div className="sm:flex hidden flex-row justify-end gap-4">
