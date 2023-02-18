@@ -36,10 +36,12 @@ const Navbar = () => {
 
         <button
           onClick={() => {
-            searchRef.current.value = '';
+            if (id === '') return;
             navigate(`/search-results/${id}`, {
               state: { queryId: id },
             });
+            searchRef.current.value = '';
+            setId('');
           }}
         >
           <div className="w-[72px] h-full rounded-[20px] bg-gradient-to-r from-[#1d64c0] to-[#1dc071] flex justify-center items-center cursor-pointer">
