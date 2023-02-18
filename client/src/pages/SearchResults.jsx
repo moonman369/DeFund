@@ -32,7 +32,7 @@ const SearchResults = () => {
         />
       ) : (
         <div className="font=epilogue font-semibold text-white text-[26px] justify-center text-center mt-[250px]">
-          No Search Results were found
+          {`No Search Results were found for '${state.queryId}'`}
         </div>
       )}
     </div>
