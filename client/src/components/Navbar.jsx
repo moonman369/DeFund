@@ -15,6 +15,21 @@ const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { connect, address, disconnect } = useStateContext();
 
+  const handleSubmit = () => {
+    if (id === '') return;
+    navigate(`/search-results/${id}`, {
+      state: { queryId: id },
+    });
+    searchRef.current.value = '';
+    setId('');
+  };
+
+  const handleEnterPress = (e) => {
+    if (e.keyCode === 13) {
+      handleSubmit();
+    }
+  };
+
   useEffect(() => {
     // console.log(pathname);
     const active = linkMap.get(pathname);
@@ -32,18 +47,10 @@ const Navbar = () => {
           onChange={(e) => {
             setId(e.target.value);
           }}
+          onKeyUp={handleEnterPress}
         />
 
-        <button
-          onClick={() => {
-            if (id === '') return;
-            navigate(`/search-results/${id}`, {
-              state: { queryId: id },
-            });
-            searchRef.current.value = '';
-            setId('');
-          }}
-        >
+        <button onClick={handleSubmit}>
           <div className="w-[72px] h-full rounded-[20px] bg-gradient-to-r from-[#1d64c0] to-[#1dc071] flex justify-center items-center cursor-pointer">
             <img
               src={search}
