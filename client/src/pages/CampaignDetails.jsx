@@ -51,26 +51,31 @@ const CampaignDetails = () => {
   }, [contract, address]);
 
   const handleDonate = async () => {
-    // console.log(await getDonations(4));
-    // console.log(input);
-    if (!address) {
-      connect();
-    }
     if (amount <= 0) {
       alert('Please enter a non-zero, positive donation amount.');
       input.current.value = '';
       return;
     }
     // console.log(state);
-    setIsLoading(true);
-    await donate(state.id, amount).catch((e) => {
-      setIsLoading(false);
-      return;
-    });
-    await fetchDonators();
+    if (!address) {
+      connect();
+    }
     input.current.value = '';
-    setIsLoading(false);
+    setIsLoading(true);
+
+    const res = await donate(state.id, amount);
+    if (!res) {
+      setIsLoading(false);
+      input.current.value = '';
+    } else {
+      await fetchDonators();
+      setIsLoading(false);
+      input.current.value = '';
+      return;
+    }
+    input.current.value = '';
   };
+
   return (
     <div>
       {isLoading && <Loader />}

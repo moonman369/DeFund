@@ -108,9 +108,11 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const donate = async (id, amount) => {
-    const data = await contract.call('donateToCampaign', id, {
-      value: ethers.utils.parseEther(amount),
-    });
+    const data = await contract
+      .call('donateToCampaign', id, {
+        value: ethers.utils.parseEther(amount),
+      })
+      .catch((e) => false);
 
     return data;
   };
