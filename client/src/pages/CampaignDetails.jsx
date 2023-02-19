@@ -56,6 +56,11 @@ const CampaignDetails = () => {
     if (!address) {
       connect();
     }
+    if (amount <= 0) {
+      alert('Please enter a non-zero, positive donation amount.');
+      input.current.value = '';
+      return;
+    }
     // console.log(state);
     setIsLoading(true);
     await donate(state.id, amount).catch((e) => {
@@ -202,10 +207,13 @@ const CampaignDetails = () => {
                 ref={input}
                 type="number"
                 placeholder="0.01 ETH"
+                min="0"
                 step="0.01"
                 className="w-full py-[10px] px-[10px] sm:px-[20px] px[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[18px] leading-[30px] placeholder:text-[#4b5264] rounded-[10px]"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => {
+                  setAmount(e.target.value);
+                }}
               />
 
               <div className="my-[20px] p-4 bg-[#13131a] rounded-[10px]">
