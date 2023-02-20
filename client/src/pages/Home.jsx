@@ -35,7 +35,13 @@
 import React from 'react';
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <p className="text-[80px] max-[400px]:text-[35px] font-bold font-epilogue text-center bg-clip-text bg-gradient-to-r from-[#0658c2] to-[#12be6b] text-transparent">
+        Welcome to DeFund
+      </p>
+    </div>
+  );
 };
 
 export default Home;
