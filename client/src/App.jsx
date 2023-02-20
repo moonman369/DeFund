@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import {
   Home,
+  Campaigns,
   CampaignDetails,
   CreateCampaign,
   Profile,
@@ -19,6 +20,7 @@ const App = () => {
       <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5">
         <Navbar />
         <Routes>
+          <Route path="/campaigns" element={<Campaigns />} />
           <Route path="/" element={<Home />} />
           <Route path="/search-results/:param" element={<SearchResults />} />
           <Route path="/profile" element={<Profile />} />
