@@ -66,7 +66,7 @@ export const StateContextProvider = ({ children }) => {
 
   const getCampaignById = async (id) => {
     const parsedId = Number(id);
-    if (!parsedId) return false;
+    if (parsedId === NaN) return false;
     const campaign = await contract.call('getCampaignById', parsedId);
     if (campaign.owner === '0x0000000000000000000000000000000000000000')
       return false;
