@@ -40,7 +40,7 @@ const CreateCampaign = () => {
           target: ethers.utils.parseUnits(form.target, 18),
         });
         setIsLoading(false);
-        if (res !== false) navigate('/');
+        if (res !== false) navigate('/campaigns');
       }
     } else {
       alert('Provide valid image URL');
