@@ -101,7 +101,7 @@ const Navbar = () => {
       {/* Small screen navigation */}
       <div className="sm:hidden flex justify-between items-center relative">
         <Link
-          to="/"
+          to="/campaigns"
           onClick={() => {
             setToggleDrawer(false);
           }}
@@ -119,7 +119,7 @@ const Navbar = () => {
           src={menu}
           alt="menu"
           className="w-[34px] h-[34px] object-contain cursor-pointer"
-          onClick={() => setToggleDrawer((prev) => !prev)}
+          onClick={() => setToggleDrawer(!toggleDrawer)}
         />
 
         <div

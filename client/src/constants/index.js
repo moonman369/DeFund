@@ -5,13 +5,19 @@ import {
   payment,
   profile,
   withdraw,
+  home,
 } from '../assets';
 
 export const navlinks = [
   {
+    name: 'home',
+    imgUrl: home,
+    link: '/',
+  },
+  {
     name: 'dashboard',
     imgUrl: dashboard,
-    link: '/',
+    link: '/campaigns',
   },
   {
     name: 'campaign',

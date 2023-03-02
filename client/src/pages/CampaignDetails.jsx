@@ -29,6 +29,8 @@ const CampaignDetails = () => {
   const fetchDonators = async () => {
     const data = await getDonations(state.id);
     setDonators(data);
+    setIsLoading(false);
+    input.current.value = '';
   };
 
   const fetchCampaignCount = async () => {
