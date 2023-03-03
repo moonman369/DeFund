@@ -41,32 +41,34 @@ const Home = () => {
         Welcome to DeFund
       </h1>
 
-      <p className="text-justify text-[#c5c9c8] font-epilogue text-[18px] mx-[3rem] my-4 ">
+      <p className="text-left text-[#c5c9c8] font-epilogue text-[17px] mx-[5%] my-4 ">
         This is where crowdfunding meets the world of Decentralized Web. Using
         DeFund, you can create customized campaigns representing your ideas and
         raise funds in crypto. DeFund is a Crowdfunding platform based on the
         famous Ethereum Network. The fact that DeFund uses blockchain technology
-        under the hood implies that it comes with the perks of decentralization.{' '}
+        under the hood implies that it comes with the perks of decentralization.
         <br />
         <br /> It's Salient Features are as follows:
-        <div className="text-[#23df84] text-transparent">
+        <span className="text-[#23df84] text-transparent">
           <li>Completely Decentralized</li>
           <li>Highly Secured</li>
           <li>Fully Tamperproof</li>
           <li>Entirely Transparent</li>
           <li>Non-Private</li>
           <li>Censorship Resistant</li>
-        </div>
+        </span>
         <br />
-        The design of the app is extremely simple. All you need is a Metamask
-        Account and boom you can create and donate to as many campaigns as you
-        want. <br />
+        The design of the app is extremely simple. You can use the sidebar
+        (toggle bar for small devices) section to navigate to various pages .
+        All you need is a Metamask Account and boom you can create and donate to
+        as many campaigns as you want. <br />
+        <br />
         Just connect your Metamask account with the{' '}
         <span className="bg-gradient-to-r from-[#8c6dfd] to-[#d47c34] font-epilogue font-semibold test-[16px] leading-[26px] text-white min-h-[52px] px-2 py-2 rounded-[10px]">
           Connect
         </span>{' '}
         button on the top right corner (toggle option for small devices) and
-        raise funds for your idea, the Web3 way...
+        raise funds for your unique campaign idea, the Web3 way...
       </p>
     </div>
   );
