@@ -5,6 +5,7 @@ import { money } from '../assets';
 import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from '../utils';
 import { useStateContext } from '../context';
+import { NotificationManager } from 'react-notifications';
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
@@ -31,7 +32,12 @@ const CreateCampaign = () => {
     if (imgValid) {
       // console.log(new Date(form.deadline).getTime(), Date.now());
       if (new Date(form.deadline).getTime() < Date.now()) {
-        alert('Invalid deadline! Try entering a future date.');
+        // alert('Invalid deadline! Try entering a future date.');
+        NotificationManager.warning(
+          'Provide valid deadline datetime',
+          'Invalid deadline',
+          3000
+        );
         setForm({ ...form, deadline: '' });
       } else {
         setIsLoading(true);
@@ -43,7 +49,12 @@ const CreateCampaign = () => {
         if (res !== false) navigate('/campaigns');
       }
     } else {
-      alert('Provide valid image URL');
+      // alert('Provide valid image URL');
+      NotificationManager.warning(
+        'Provide valid image URL',
+        'Invalid image',
+        3000
+      );
       setForm({ ...form, image: '' });
     }
 

@@ -9,7 +9,8 @@ import {
   SearchResults,
 } from './pages';
 import { Sidebar, Navbar } from './components';
-
+import NotificationContainer from 'react-notifications/lib/NotificationContainer';
+import 'react-notifications/lib/notifications.css';
 const App = () => {
   return (
     <div className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/create-campaign" element={<CreateCampaign />} />
           <Route path="/campaign-details/:id" element={<CampaignDetails />} />
         </Routes>
+        <NotificationContainer />
       </div>
     </div>
   );
