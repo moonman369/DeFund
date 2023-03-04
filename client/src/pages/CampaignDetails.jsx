@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import React, { useState, useEffect, useRef } from 'react';
+import { NotificationManager } from 'react-notifications';
 import { useLocation } from 'react-router-dom';
 import { thirdweb } from '../assets';
 import { CustomButton, CountBox, Loader } from '../components';
@@ -54,7 +55,12 @@ const CampaignDetails = () => {
 
   const handleDonate = async () => {
     if (amount <= 0) {
-      alert('Please enter a non-zero, positive donation amount.');
+      // alert('Please enter a non-zero, positive donation amount.');
+      NotificationManager.warning(
+        'Please enter a non-zero, positive donation amount.',
+        'Invalid value',
+        3000
+      );
       input.current.value = '';
       return;
     }
