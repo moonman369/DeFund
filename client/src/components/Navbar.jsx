@@ -157,11 +157,11 @@ const Navbar = () => {
             !toggleDrawer ? '-translate-y-[120%]' : 'translate-y-0'
           } transition-all duration-700`}
         >
-          <ul className="mb-4">
+          <ul className="mb-5">
             {navlinks.map((link) => (
               <li
                 key={link.name}
-                className={`flex p-4 ${
+                className={`flex p-4 mb-5 ${
                   isActive === link.name && 'bg-[#3a3a43]'
                 }`}
                 onClick={() => {
