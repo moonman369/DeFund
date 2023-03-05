@@ -17,12 +17,21 @@ const Navbar = () => {
   const { connect, address, disconnect } = useStateContext();
 
   const handleSubmit = () => {
-    if (id === '') return;
-    navigate(`/search-results/${id}`, {
-      state: { queryId: id },
-    });
-    searchRef.current.value = '';
-    setId('');
+    if (address) {
+      if (id === '') return;
+      navigate(`/search-results/${id}`, {
+        state: { queryId: id },
+      });
+      searchRef.current.value = '';
+      setId('');
+    } else {
+      NotificationManager.error(
+        'Please connect your metamask account first',
+        'Wallet Not Connect',
+        2000
+      );
+      return;
+    }
   };
 
   const handleEnterPress = (e) => {
@@ -88,15 +97,29 @@ const Navbar = () => {
           </div>
         )}
 
-        <Link to="/profile">
-          <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-            <img
-              src={thirdweb}
-              alt="user"
-              className="w-[60%] h-[60%] object-contain"
-            />
-          </div>
-        </Link>
+        {/* <Link to="/profile">
+          
+        </Link> */}
+
+        <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
+          <img
+            src={thirdweb}
+            alt="user"
+            className="w-[60%] h-[60%] object-contain"
+            onClick={() => {
+              if (!address) {
+                NotificationManager.error(
+                  'Please connect your metamask account first',
+                  'Wallet Not Connect',
+                  2000
+                );
+                return;
+              } else {
+                navigate('/profile');
+              }
+            }}
+          />
+        </div>
       </div>
 
       {/* Small screen navigation */}
