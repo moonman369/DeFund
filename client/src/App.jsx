@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import {
   Home,
   Campaigns,
@@ -11,7 +11,15 @@ import {
 import { Sidebar, Navbar } from './components';
 import NotificationContainer from 'react-notifications/lib/NotificationContainer';
 import 'react-notifications/lib/notifications.css';
+import { useStateContext } from './context';
 const App = () => {
+  const { address } = useStateContext();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!address) {
+      navigate('/');
+    }
+  }, [address]);
   return (
     <div className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
       <div className="sm:flex hidden mr-10 relative">

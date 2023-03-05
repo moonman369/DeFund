@@ -42,7 +42,7 @@ const Sidebar = () => {
 
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
-      <Link to="/campaigns">
+      <Link to={`${address ? '/campaigns' : '/'}`}>
         <Icon styles="w-[52px] h-[52px] bg-[#2c2f32]" imgUrl={logo} />
       </Link>
 
@@ -69,6 +69,7 @@ const Sidebar = () => {
                   if (link.name === 'logout') {
                     disconnect();
                     navigate('/');
+                    setIsActive('home');
                   }
                 }
               }}
