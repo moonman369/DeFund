@@ -52,7 +52,7 @@ const Sidebar = () => {
           if (!address) {
             NotificationManager.error(
               'Please connect your metamask account first',
-              'Wallet Not Connect',
+              'Wallet Not Connected',
               2000
             );
             return;
@@ -73,7 +73,7 @@ const Sidebar = () => {
                 if (!address) {
                   NotificationManager.error(
                     'Please connect your metamask account first',
-                    'Wallet Not Connect',
+                    'Wallet Not Connected',
                     2000
                   );
                   return;
