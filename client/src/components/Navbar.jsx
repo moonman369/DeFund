@@ -17,12 +17,21 @@ const Navbar = () => {
   const { connect, address, disconnect } = useStateContext();
 
   const handleSubmit = () => {
-    if (id === '') return;
-    navigate(`/search-results/${id}`, {
-      state: { queryId: id },
-    });
-    searchRef.current.value = '';
-    setId('');
+    if (address) {
+      if (id === '') return;
+      navigate(`/search-results/${id}`, {
+        state: { queryId: id },
+      });
+      searchRef.current.value = '';
+      setId('');
+    } else {
+      NotificationManager.error(
+        'Please connect your metamask account first',
+        'Wallet Not Connect',
+        2000
+      );
+      return;
+    }
   };
 
   const handleEnterPress = (e) => {
