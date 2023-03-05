@@ -5,6 +5,7 @@ import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks, linkMap } from '../constants';
 import { useStateContext } from '../context';
 import { ConnectWallet } from '@thirdweb-dev/react';
+import { NotificationManager } from 'react-notifications';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -135,17 +136,26 @@ const Navbar = () => {
                   isActive === link.name && 'bg-[#3a3a43]'
                 }`}
                 onClick={() => {
-                  if (!link.disabled) {
-                    setIsActive(link.name);
-                    setToggleDrawer(false);
-                  }
-                  if (link.name === 'logout') {
-                    disconnect();
-                    navigate('/');
-                    setIsActive('dashboard');
+                  if (address) {
+                    if (!link.disabled) {
+                      setIsActive(link.name);
+                      setToggleDrawer(false);
+                    }
+                    if (link.name === 'logout') {
+                      disconnect();
+                      navigate('/');
+                      setIsActive('home');
+                      return;
+                    }
+                    navigate(link.link);
+                  } else {
+                    NotificationManager.error(
+                      'Please connect your metamask account first',
+                      'Wallet Not Connect',
+                      2000
+                    );
                     return;
                   }
-                  navigate(link.link);
                 }}
               >
                 <img
