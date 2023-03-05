@@ -98,7 +98,7 @@ const CampaignDetails = () => {
           <progress
             value={state.amountCollected}
             max={state.target}
-            className="relative w-full h-[6px] bg-[#3a3a43] mt-2 rounded-xl"
+            className="relative w-full h-[6px] bg-[#3b3b44] mt-2 rounded-xl"
           ></progress>
           {/* <div className="relative w-full h-[5px] bg-[#3a3a43] mt-2">
             <div
@@ -128,6 +128,15 @@ const CampaignDetails = () => {
       <div className="mt-[60px] flex lg:flex-row flex-col gap-5">
         <div className="flex-[2] flex flex-col gap-[40px]">
           <div>
+            <div className="">
+              <h4 className="font-epilogue font-semibold text-[18px] text-white p-3">
+                CAMPAIGN ID
+                <span className="text-[#57f08a] ml-3 p-2 rounded-[5px] bg-[#28282e]">
+                  {state.id}
+                </span>
+              </h4>
+            </div>
+
             <h4 className="font-epilogue font-semibold text-[18px] text-white p-3">
               CREATOR
             </h4>
