@@ -25,6 +25,7 @@ const Navbar = () => {
       searchRef.current.value = '';
       setId('');
     } else {
+      searchRef.current.value = '';
       NotificationManager.error(
         'Please connect your metamask account first',
         'Wallet Not Connected',
