@@ -49,13 +49,13 @@ const Home = () => {
         under the hood implies that it comes with the perks of decentralization.
         <br />
         <br /> It's Salient Features are as follows:
-        <span className="text-[#23df84] text-transparent">
-          <li>Completely Decentralized</li>
-          <li>Highly Secured</li>
-          <li>Fully Tamperproof</li>
-          <li>Entirely Transparent</li>
-          <li>Non-Private</li>
-          <li>Censorship Resistant</li>
+        <span>
+          <li className="text-[#15e27f]">Completely Decentralized</li>
+          <li className="text-[#23df81]">Highly Secured</li>
+          <li className="text-[#23dfb6]">Fully Tamperproof</li>
+          <li className="text-[#23d9df]">Entirely Transparent</li>
+          <li className="text-[#23b3df]">Non-Private</li>
+          <li className="text-[#2384df]">Censorship Resistant</li>
         </span>
         <br />
         The design of the app is extremely simple. You can use the sidebar
@@ -69,6 +69,26 @@ const Home = () => {
         </span>{' '}
         button on the top right corner (toggle option for small devices) and
         raise funds for your unique campaign idea, the Web3 way...
+        <br />
+        <br />
+        Users who don't have Metamask installed, can install it from these
+        links:
+        <br />
+        <li className="font-epilogue font-semibold text-[#d47c34]">
+          <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">
+            Chrome Extension
+          </a>
+        </li>
+        <li className="font-epilogue font-semibold text-[#cc4a7c]">
+          <a href="https://play.google.com/store/apps/details?id=io.metamask&hl=en_US&ref=producthunt&_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWT6ooz3a1yHeztAQA/OIqTSQAAAA%3D&pli=1">
+            Android App
+          </a>
+        </li>
+        <li className="font-epilogue font-semibold text-[#8c6dfd]">
+          <a href="https://apps.apple.com/us/app/metamask/id1438144202?_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWL8529DB2SnSztAQA5G46IyQAAAA%3D">
+            iOS App
+          </a>
+        </li>
       </p>
     </div>
   );

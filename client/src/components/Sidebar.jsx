@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NotificationManager } from 'react-notifications';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { logo, sun } from '../assets';
@@ -27,7 +28,7 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
 );
 
 const Sidebar = () => {
-  const { disconnect } = useStateContext();
+  const { disconnect, address } = useStateContext();
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
@@ -53,7 +54,16 @@ const Sidebar = () => {
               {...link}
               isActive={isActive}
               handleClick={() => {
+                if (!address) {
+                  NotificationManager.error(
+                    'Please connect your metamask account first',
+                    'Wallet Not Connect',
+                    2000
+                  );
+                  return;
+                }
                 if (!link.disabled) {
+                  console.log(address);
                   setIsActive(link.name);
                   navigate(link.link);
                   if (link.name === 'logout') {
