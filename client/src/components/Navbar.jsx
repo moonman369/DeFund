@@ -27,7 +27,7 @@ const Navbar = () => {
     } else {
       NotificationManager.error(
         'Please connect your metamask account first',
-        'Wallet Not Connect',
+        'Wallet Not Connected',
         2000
       );
       return;
@@ -110,7 +110,7 @@ const Navbar = () => {
               if (!address) {
                 NotificationManager.error(
                   'Please connect your metamask account first',
-                  'Wallet Not Connect',
+                  'Wallet Not Connected',
                   2000
                 );
                 return;
@@ -133,7 +133,7 @@ const Navbar = () => {
               if (!address) {
                 NotificationManager.error(
                   'Please connect your metamask account first',
-                  'Wallet Not Connect',
+                  'Wallet Not Connected',
                   2000
                 );
                 return;
@@ -180,7 +180,7 @@ const Navbar = () => {
                   } else {
                     NotificationManager.error(
                       'Please connect your metamask account first',
-                      'Wallet Not Connect',
+                      'Wallet Not Connected',
                       2000
                     );
                     return;
