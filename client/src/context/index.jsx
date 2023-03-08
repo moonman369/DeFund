@@ -3,9 +3,12 @@ import {
   useAddress,
   useContract,
   useMetamask,
+  useBalance,
   useDisconnect,
   useContractWrite,
+  useChainId,
 } from '@thirdweb-dev/react';
+import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 import { ethers } from 'ethers';
 import { parse } from '@ethersproject/transactions';
 
@@ -25,7 +28,11 @@ export const StateContextProvider = ({ children }) => {
 
   const connect = useMetamask();
 
+  const chainId = useChainId();
+
   const disconnect = useDisconnect();
+
+  const balance = useBalance(NATIVE_TOKEN_ADDRESS);
 
   const publishCampaign = async (form) => {
     try {
@@ -134,6 +141,8 @@ export const StateContextProvider = ({ children }) => {
       value={{
         address,
         contract,
+        balance,
+        chainId,
         connect,
         disconnect,
         getCampaigns,
