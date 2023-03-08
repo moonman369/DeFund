@@ -1,4 +1,7 @@
-import { ethers } from 'ethers';
+import { useBalance } from '@thirdweb-dev/react';
+import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
+import { BigNumber, ethers } from 'ethers';
+import { formatEther, parseEther } from 'ethers/lib/utils';
 import React, { useState, useEffect, useRef } from 'react';
 import { NotificationManager } from 'react-notifications';
 import { useLocation } from 'react-router-dom';
@@ -12,6 +15,7 @@ const CampaignDetails = () => {
   const input = useRef();
   const {
     connect,
+    chainId,
     donate,
     getDonations,
     getUserCampaignCount,
@@ -20,12 +24,18 @@ const CampaignDetails = () => {
     address,
   } = useStateContext();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const provider = ethers.getDefaultProvider(
+    ethers.providers.getNetwork(chainId)
+  );
+
+  const [isLoading1, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
   const [donators, setDonators] = useState([]);
   const [campaignCount, setCampaignCount] = useState(0);
 
   const remainingDays = daysLeft(state.deadline);
+
+  const { data, isLoading } = useBalance();
 
   const fetchDonators = async () => {
     const data = await getDonations(state.id);
@@ -54,7 +64,10 @@ const CampaignDetails = () => {
   }, [contract, address]);
 
   const handleDonate = async () => {
-    if (amount <= 0) {
+    const balance = await provider.getBalance(address);
+    if (!address) {
+      connect();
+    } else if (amount <= 0) {
       // alert('Please enter a non-zero, positive donation amount.');
       NotificationManager.warning(
         'Please enter a non-zero, positive donation amount.',
@@ -65,28 +78,39 @@ const CampaignDetails = () => {
       return;
     }
     // console.log(state);
-    if (!address) {
-      connect();
-    }
-    input.current.value = '';
-    setIsLoading(true);
-
-    const res = await donate(state.id, amount);
-    if (!res) {
-      setIsLoading(false);
-      input.current.value = '';
-    } else {
-      await fetchDonators();
-      setIsLoading(false);
+    else if (balance.lt(parseEther(input.current.value))) {
+      NotificationManager.warning(
+        'You do not have enough funds for this transaction.',
+        'Insufficient Funds',
+        3000
+      );
       input.current.value = '';
       return;
+    } else {
+      setIsLoading(true);
+      const res = await donate(state.id, input.current.value);
+      setIsLoading(false);
+      input.current.value = '';
+
+      if (res) {
+        NotificationManager.success(
+          `${input.current.value} ETH successfully donated to Campaign ${state.id}`,
+          'Transaction Successful',
+          3000
+        );
+      } else {
+        NotificationManager.error(
+          `Some error occurred while sending the funds. Please try again`,
+          'Transaction Failed',
+          3000
+        );
+      }
     }
-    input.current.value = '';
   };
 
   return (
     <div>
-      {isLoading && <Loader />}
+      {isLoading1 && <Loader />}
 
       <div className="w-full flex md:flex-row flex-col mt-[10px] gap-[30px]">
         <div className="flex-1 flex-col">
