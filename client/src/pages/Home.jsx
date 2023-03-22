@@ -41,8 +41,8 @@ const Home = () => {
         Users who don't have Metamask installed, can install it from these
         links:
         <br />
-        <ul>
-          <li className="font-epilogue flex font-semibold text-[#d47c34]">
+        <ul className="p-4">
+          <li className="font-epilogue flex font-semibold text-[#d47c34] mb-2">
             <a
               href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
               className="flex"
@@ -50,7 +50,7 @@ const Home = () => {
               Chrome Extension &nbsp; <FiExternalLink />
             </a>
           </li>
-          <li className="font-epilogue flex font-semibold text-[#cc4a7c]">
+          <li className="font-epilogue flex font-semibold text-[#cc4a7c] mb-2">
             <a
               href="https://play.google.com/store/apps/details?id=io.metamask&hl=en_US&ref=producthunt&_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWT6ooz3a1yHeztAQA/OIqTSQAAAA%3D&pli=1"
               className="flex"
@@ -58,7 +58,7 @@ const Home = () => {
               Android App &nbsp; <FiExternalLink />
             </a>
           </li>
-          <li className="font-epilogue flex font-semibold text-[#8c6dfd]">
+          <li className="font-epilogue flex font-semibold text-[#8c6dfd] mb-2">
             <a
               href="https://apps.apple.com/us/app/metamask/id1438144202?_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWL8529DB2SnSztAQA5G46IyQAAAA%3D"
               className="flex"
