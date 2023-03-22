@@ -1,38 +1,5 @@
-// import React, { useState, useEffect } from 'react';
-// import { DisplayCampaigns } from '../components';
-// import { useStateContext } from '../context';
-
-// const Home = () => {
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [campaigns, setCampaigns] = useState([]);
-
-//   const { address, contract, getCampaigns } = useStateContext();
-
-//   const fetchCampaigns = async () => {
-//     setIsLoading(true);
-//     const data = await getCampaigns();
-//     setCampaigns(data);
-//     setIsLoading(false);
-//   };
-
-//   useEffect(() => {
-//     if (contract) fetchCampaigns();
-//   }, [address, contract]);
-
-//   return (
-//     <div>
-//       <DisplayCampaigns
-//         title="All Campaigns"
-//         isLoading={isLoading}
-//         campaigns={campaigns}
-//       />
-//     </div>
-//   );
-// };
-
-// export default Home;
-
 import React from 'react';
+import { FiExternalLink } from 'react-icons/fi';
 
 const Home = () => {
   return (
@@ -74,21 +41,32 @@ const Home = () => {
         Users who don't have Metamask installed, can install it from these
         links:
         <br />
-        <li className="font-epilogue font-semibold text-[#d47c34]">
-          <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">
-            Chrome Extension
-          </a>
-        </li>
-        <li className="font-epilogue font-semibold text-[#cc4a7c]">
-          <a href="https://play.google.com/store/apps/details?id=io.metamask&hl=en_US&ref=producthunt&_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWT6ooz3a1yHeztAQA/OIqTSQAAAA%3D&pli=1">
-            Android App
-          </a>
-        </li>
-        <li className="font-epilogue font-semibold text-[#8c6dfd]">
-          <a href="https://apps.apple.com/us/app/metamask/id1438144202?_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWL8529DB2SnSztAQA5G46IyQAAAA%3D">
-            iOS App
-          </a>
-        </li>
+        <ul>
+          <li className="font-epilogue flex font-semibold text-[#d47c34]">
+            <a
+              href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
+              className="flex"
+            >
+              Chrome Extension &nbsp; <FiExternalLink />
+            </a>
+          </li>
+          <li className="font-epilogue flex font-semibold text-[#cc4a7c]">
+            <a
+              href="https://play.google.com/store/apps/details?id=io.metamask&hl=en_US&ref=producthunt&_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWT6ooz3a1yHeztAQA/OIqTSQAAAA%3D&pli=1"
+              className="flex"
+            >
+              Android App &nbsp; <FiExternalLink />
+            </a>
+          </li>
+          <li className="font-epilogue flex font-semibold text-[#8c6dfd]">
+            <a
+              href="https://apps.apple.com/us/app/metamask/id1438144202?_branch_match_id=1103225679164445192&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz00tScxNLM7WSywo0MvJzMvWL8529DB2SnSztAQA5G46IyQAAAA%3D"
+              className="flex"
+            >
+              iOS App &nbsp; <FiExternalLink />
+            </a>
+          </li>
+        </ul>
       </p>
     </div>
   );
