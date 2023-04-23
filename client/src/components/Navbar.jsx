@@ -210,7 +210,7 @@ const Navbar = () => {
             {address ? (
               <div className="flex flex-col">
                 <ConnectWallet
-                  className="font-epilogue font-semibold test-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px]"
+                  className="font-epilogue font-semibold test-[16px] leading-[26px] text-white min-h-[52px] w-[34px] px-4 rounded-[10px]"
                   my-3
                 />
                 <CustomButton
