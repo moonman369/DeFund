@@ -6,6 +6,15 @@ import { navlinks, linkMap } from '../constants';
 import { useStateContext } from '../context';
 import { ConnectWallet } from '@thirdweb-dev/react';
 import { NotificationManager } from 'react-notifications';
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    backgroundColor: '#1c1c24',
+    color: 'white',
+    borderRadius: '20px',
+  },
+};
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,6 +23,7 @@ const Navbar = () => {
   const [isActive, setIsActive] = useState('dashboard');
   const [id, setId] = useState('');
   const [toggleDrawer, setToggleDrawer] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const { connect, address, disconnect } = useStateContext();
 
   const handleSubmit = () => {
@@ -70,6 +80,57 @@ const Navbar = () => {
             />
           </div>
         </button>
+      </div>
+
+      <div>
+        <CustomButton
+          btnType="button"
+          title={'Message From Dev'}
+          styles={'bg-gradient-to-r from-[#8c6dfd] to-[#d47c34] mr-3'}
+          handleClick={() => {
+            setModalOpen(true);
+          }}
+        />
+        <Modal
+          isOpen={modalOpen}
+          onRequestClose={() => setModalOpen(false)}
+          style={customStyles}
+        >
+          <h1 className="font-bold text-[24px] mb-5">Message from Developer</h1>
+          <p>
+            Hi! I am the developer of this application. First, I would like to
+            thank all of the users who used this platform for creating
+            campaigns. I never thought this project will amount to anything more
+            than a column on my resume, but since there are actual people who
+            seem to be interested in using it, I would like users to have a look
+            at the following message. For those who are just around to exploring
+            this app and testing it's functionality, please keep doing so,
+            because doing so gives me a scope to improve on it's functionality
+            constantly. Now, for those who actually wants to use this platform
+            to raise funds, (One person in particular, created a campaign to
+            raise funds for a medical expense), Please let me know if you want
+            me to deploy this platform on Ethereum Mainnet so that you can raise
+            REAL money and get REAL support for your cause. You can contact me
+            visit my profile @{' '}
+            <a
+              className="text-blue-800"
+              href="https://devfoliomoonman369.netlify.app"
+              target="_blank"
+            >
+              https://devfoliomoonman369.netlify.app
+            </a>{' '}
+            and contact me from there. I really look forward to hearing from you
+            guys.
+          </p>
+          <CustomButton
+            btnType="button"
+            title={'Close'}
+            styles={'bg-red-400 mt-10'}
+            handleClick={() => {
+              setModalOpen(false);
+            }}
+          />
+        </Modal>
       </div>
 
       <div className="sm:flex hidden flex-row justify-end gap-4">
