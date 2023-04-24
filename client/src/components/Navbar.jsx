@@ -13,6 +13,7 @@ const customStyles = {
     backgroundColor: '#1c1c24',
     color: 'white',
     borderRadius: '20px',
+    padding: '30px',
   },
 };
 
@@ -96,23 +97,31 @@ const Navbar = () => {
           onRequestClose={() => setModalOpen(false)}
           style={customStyles}
         >
-          <h1 className="font-bold text-[24px] mb-5">Message from Developer</h1>
+          <h1 className="font-bold text-[24px] mb-5 mt-3">
+            Message from Developer
+          </h1>
+          <br />
           <p>
             Hi! I am the developer of this application. First, I would like to
             thank all of the users who used this platform for creating
             campaigns. I never thought this project will amount to anything more
             than a column on my resume, but since there are actual people who
             seem to be interested in using it, I would like users to have a look
-            at the following message. For those who are just around to exploring
-            this app and testing it's functionality, please keep doing so,
-            because doing so gives me a scope to improve on it's functionality
-            constantly. Now, for those who actually wants to use this platform
-            to raise funds, (One person in particular, created a campaign to
-            raise funds for a medical expense), Please let me know if you want
-            me to deploy this platform on Ethereum Mainnet so that you can raise
-            REAL money and get REAL support for your cause. You visit my profile{' '}
+            at the following message.
+            <br />
+            <br />
+            For those who are just around to explore this app and testing it's
+            functionality, please keep doing so, because this gives me scope to
+            improve on the app's functionality constantly.
+            <br />
+            <br />
+            Now, for those who actually want to use this platform to raise
+            funds, (One person in particular, created a campaign to raise funds
+            for a medical expense), Please let me know if you want me to deploy
+            this platform on Ethereum Mainnet so that you can raise REAL money
+            and get REAL support for your cause. You visit my profile{' '}
             <a
-              className="text-blue-800 font-bold"
+              className="text-blue-500 font-bold"
               href="https://devfoliomoonman369.netlify.app/#contact"
               target="_blank"
             >

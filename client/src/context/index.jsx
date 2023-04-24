@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from 'react';
+import React, { useContext, createContext, useEffect } from 'react';
 import {
   useAddress,
   useContract,
@@ -11,6 +11,9 @@ import {
 import { NATIVE_TOKEN_ADDRESS } from '@thirdweb-dev/sdk';
 import { ethers } from 'ethers';
 import { parse } from '@ethersproject/transactions';
+
+const GOERLI_CHAIN_ID = 5;
+const GOERLI_RPC_URL = 'https://rpc.ankr.com/eth_goerli';
 
 const StateContext = createContext();
 
@@ -135,6 +138,54 @@ export const StateContextProvider = ({ children }) => {
       };
     });
   };
+
+  const switchToGoerli = async () => {
+    try {
+      await window?.ethereum?.request({
+        method: 'wallet_switchEthereumChain',
+        params: [
+          {
+            chainId: `0x${GOERLI_CHAIN_ID.toString(16)}`,
+          },
+        ],
+      });
+    } catch (switchError) {
+      if (switchError.code === 4902) {
+        try {
+          await window?.ethereum?.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: `0x${GOERLI_CHAIN_ID.toString(16)}`,
+                chainName: 'Goerli Testnet',
+                nativeCurrency: {
+                  name: 'Goerli ETH',
+                  symbol: 'ETH',
+                  decimals: 18,
+                },
+                rpcUrls: ['https://rpc.ankr.com/eth_goerli'],
+                blockExplorerUrls: ['https://goerli.etherscan.io/'],
+              },
+            ],
+          });
+        } catch (addError) {
+          console.error(addError);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    const switchChain = async () => {
+      await switchToGoerli();
+    };
+    switchChain();
+
+    window?.ethereum?.on('chainChanged', () => {
+      resetParams();
+      setChain(window?.ethereum?.chainId);
+    });
+  }, []);
 
   return (
     <StateContext.Provider
