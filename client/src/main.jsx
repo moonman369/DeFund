@@ -6,13 +6,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 import App from './App';
 import './index.css';
 import { StateContextProvider } from './context';
+import { SwitchChainModal } from './components';
 
 root.render(
   <ThirdwebProvider desiredChainId={ChainId.Goerli}>
-    <Router>
-      <StateContextProvider>
+    <StateContextProvider>
+      <SwitchChainModal />
+      <Router>
         <App />
-      </StateContextProvider>
-    </Router>
+      </Router>
+    </StateContextProvider>
   </ThirdwebProvider>
 );

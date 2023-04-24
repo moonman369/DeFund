@@ -181,10 +181,9 @@ export const StateContextProvider = ({ children }) => {
     };
     switchChain();
 
-    window?.ethereum?.on('chainChanged', () => {
-      resetParams();
-      setChain(window?.ethereum?.chainId);
-    });
+    // window?.ethereum?.on('chainChanged', () => {
+    //   switchChain();
+    // });
   }, []);
 
   return (
@@ -204,6 +203,7 @@ export const StateContextProvider = ({ children }) => {
         getDonations,
         getCampaignById,
         getCampaignCount,
+        switchToGoerli,
       }}
     >
       {children}
