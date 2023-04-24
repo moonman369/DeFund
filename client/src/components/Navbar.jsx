@@ -15,6 +15,10 @@ const customStyles = {
     borderRadius: '20px',
     padding: '30px',
   },
+  overlay: {
+    bg: '#1c1c24',
+    // opacity: '80%',
+  },
 };
 
 const Navbar = () => {
@@ -95,13 +99,14 @@ const Navbar = () => {
         <Modal
           isOpen={modalOpen}
           onRequestClose={() => setModalOpen(false)}
-          style={customStyles}
+          className={`absolute inset-0 flex items-center justify-center flex-col bg-[#363636] backdrop-filter backdrop-blur-lg bg-opacity-10 p-12 transition-all-[450ms]`}
+          overlayClassName="Overlay"
         >
-          <h1 className="font-bold text-[24px] mb-5 mt-3">
+          <h1 className="font-bold text-[30px] text-green-400 mb-5 mt-3">
             Message from Developer
           </h1>
           <br />
-          <p>
+          <p className="text-green-50">
             Hi! I am the developer of this application. First, I would like to
             thank all of the users who used this platform for creating
             campaigns. I never thought this project will amount to anything more
