@@ -25,7 +25,7 @@ const SwitchChainModal = () => {
   return (
     <Modal
       isOpen={modalIsOpen}
-      className={`absolute inset-0 flex items-center justify-center flex-col bg-[#363636] backdrop-filter backdrop-blur-lg bg-opacity-10`}
+      className={`absolute inset-0 flex items-center justify-center flex-col bg-[#131212] backdrop-filter backdrop-blur-xl bg-opacity-20 p-12 transition-all-[450ms]`}
       overlayClassName="Overlay"
     >
       <p className="font-epilogue font-bold text-3xl text-white mb-6 text-center">

@@ -99,7 +99,7 @@ const Navbar = () => {
         <Modal
           isOpen={modalOpen}
           onRequestClose={() => setModalOpen(false)}
-          className={`absolute inset-0 flex items-center justify-center flex-col bg-[#363636] backdrop-filter backdrop-blur-lg bg-opacity-10 p-12 transition-all-[450ms]`}
+          className={`absolute inset-0 flex items-center justify-center flex-col bg-[#131212] backdrop-filter backdrop-blur-xl bg-opacity-20 p-12 transition-all-[450ms]`}
           overlayClassName="Overlay"
         >
           <h1 className="font-bold text-[30px] text-green-400 mb-5 mt-3">

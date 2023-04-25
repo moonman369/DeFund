@@ -6,7 +6,15 @@ import { logo, sun } from '../assets';
 import { navlinks, linkMap } from '../constants';
 import { useStateContext } from '../context';
 
-const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
+const Icon = ({
+  styles,
+  name,
+  imgUrl,
+  isActive,
+  disabled,
+  handleClick,
+  title,
+}) => (
   <div
     className={`w-[48px] h-[48px] rounded-[10px] ${
       isActive && isActive === name && 'bg-[#2c2f32]'
@@ -16,9 +24,10 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
     onClick={handleClick}
   >
     {!isActive ? (
-      <img src={imgUrl} alt="fund_logo" className="w-1/2 h-1/2" />
+      <img src={imgUrl} alt="fund_logo" title={title} className="w-1/2 h-1/2" />
     ) : (
       <img
+        title={title}
         src={imgUrl}
         alt="fund_logo"
         className={`w-1/2 h-1/2 ${isActive !== name && 'grayscale'}`}
@@ -66,6 +75,7 @@ const Sidebar = () => {
         <div className="flex flex-col justify-center items-center gap-5">
           {navlinks.map((link) => (
             <Icon
+              title={link.name}
               key={link.name}
               {...link}
               isActive={isActive}
