@@ -99,7 +99,7 @@ const Navbar = () => {
         <Modal
           isOpen={modalOpen}
           onRequestClose={() => setModalOpen(false)}
-          className={`absolute inset-0 flex items-center justify-center flex-col bg-[#131212] backdrop-filter backdrop-blur-xl bg-opacity-20 p-12 transition-all-[450ms]`}
+          className={`absolute inset-0 flex items-center justify-center flex-col bg-[#131212] backdrop-filter backdrop-blur-xl bg-opacity-20 p-12 transition-all duration-450`}
           overlayClassName="Overlay"
         >
           <h1 className="font-bold text-[30px] text-green-400 mb-5 mt-3">
@@ -138,7 +138,9 @@ const Navbar = () => {
           <CustomButton
             btnType="button"
             title={'Close'}
-            styles={'bg-red-400 mt-10'}
+            styles={
+              'bg-red-400 mt-10 hover:bg-red-500 transition-all duration-450'
+            }
             handleClick={() => {
               setModalOpen(false);
             }}
